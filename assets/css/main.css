@@ -6,37 +6,37 @@
   --nav-font: "Open Sans",  sans-serif;
 }
 
-/* Global Colors - Updated color scheme */
+/* Global Colors - Updated with Burgundy and Grey */
 :root { 
   --background-color: #ffffff; /* White background for the entire website */
-  --default-color: #444444; /* Default text color */
-  --heading-color: #222222; /* Color for headings and subheadings */
-  --accent-color: #1a4774; /* Dominant brand color for buttons, links, and standout elements */
-  --surface-color: #ffffff; /* Background for boxed elements like cards */
-  --contrast-color: #ffffff; /* Contrast color for text on dark backgrounds */
+  --default-color: #444444; /* Grey for default text color */
+  --heading-color: #222222; /* Dark grey for headings and subheadings */
+  --accent-color: #800020; /* Burgundy as the dominant brand color for buttons, links, and standout elements */
+  --surface-color: #f5f5f5; /* Light grey for boxed elements like cards */
+  --contrast-color: #ffffff; /* White contrast color for text on dark backgrounds */
 }
 
-/* Nav Menu Colors - Updated for the new color scheme */
+/* Nav Menu Colors - Updated with Burgundy and Grey */
 :root {
-  --nav-color: #222222;  /* Default color for navmenu links */
-  --nav-hover-color: #541830; /* Hover and active state color for navmenu links */
-  --nav-mobile-background-color: #ffffff; /* Background for mobile navigation */
-  --nav-dropdown-background-color: #ffffff; /* Background for dropdown items */
-  --nav-dropdown-color: #222222; /* Color for dropdown links */
-  --nav-dropdown-hover-color: #541830; /* Hover color for dropdown links */
+  --nav-color: #444444;  /* Grey for default navmenu links */
+  --nav-hover-color: #800020; /* Burgundy for hover and active state color for navmenu links */
+  --nav-mobile-background-color: #ffffff; /* White background for mobile navigation */
+  --nav-dropdown-background-color: #ffffff; /* White background for dropdown items */
+  --nav-dropdown-color: #444444; /* Grey for dropdown links */
+  --nav-dropdown-hover-color: #800020; /* Burgundy for hover color for dropdown links */
 }
 
-/* Color Presets - Updated for the new color scheme */
+/* Color Presets - Updated with Burgundy and Grey */
 .light-background {
-  --background-color: #f5f9ff; /* Light background for sections */
-  --surface-color: #ffffff; /* Surface color for boxed elements */
+  --background-color: #f5f5f5; /* Light grey background for sections */
+  --surface-color: #ffffff; /* White surface color for boxed elements */
 }
 
 .dark-background {
-  --background-color: #060606; /* Dark background for sections */
+  --background-color: #222222; /* Dark grey background for sections */
   --default-color: #ffffff; /* White text for dark backgrounds */
   --heading-color: #ffffff; /* White headings for dark backgrounds */
-  --surface-color: #252525; /* Dark surface color for boxed elements */
+  --surface-color: #444444; /* Medium grey surface color for boxed elements */
   --contrast-color: #ffffff; /* White contrast text for dark backgrounds */
 }
 
@@ -841,6 +841,30 @@ section,
     transform: translateY(-10px);
   }
 }
+
+/* Glass-like background for the Why Us Section */
+.why-us {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  backdrop-filter: blur(10px); /* Blur effect for the glass look */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for definition */
+  padding: 40px 0; /* Add some padding */
+}
+
+/* Ensure the container inside the section doesn't break the glass effect */
+.why-us .container {
+  background: transparent; /* Make the container transparent */
+}
+/* Hover effect for service items */
+.why-us .service-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.why-us .service-item:hover {
+  transform: scale(1.05); /* Zoom in effect */
+  
+}
 /*--------------------------------------------------------------
 # Featured Services Section
 --------------------------------------------------------------*/
@@ -1363,6 +1387,107 @@ section,
 .faq .faq-container .faq-active .faq-toggle {
   transform: rotate(90deg);
   color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section
+--------------------------------------------------------------*/
+.portfolio .portfolio-filters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
+}
+
+.portfolio .portfolio-filters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 20px 10px 20px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--heading-font);
+}
+
+.portfolio .portfolio-filters li:hover,
+.portfolio .portfolio-filters li.filter-active {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+}
+
+.portfolio .portfolio-filters li:first-child {
+  margin-left: 0;
+}
+
+.portfolio .portfolio-filters li:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 575px) {
+  .portfolio .portfolio-filters li {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+  }
+}
+
+.portfolio .portfolio-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio .portfolio-item .portfolio-info {
+  opacity: 0;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -100%;
+  z-index: 3;
+  transition: all ease-in-out 0.5s;
+  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  padding: 15px;
+}
+
+.portfolio .portfolio-item .portfolio-info h4 {
+  font-size: 18px;
+  font-weight: 600;
+  padding-right: 50px;
+}
+
+.portfolio .portfolio-item .portfolio-info p {
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-right: 50px;
+}
+
+.portfolio .portfolio-item .portfolio-info .preview-link,
+.portfolio .portfolio-item .portfolio-info .details-link {
+  position: absolute;
+  right: 50px;
+  font-size: 24px;
+  top: calc(50% - 14px);
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  transition: 0.3s;
+  line-height: 0;
+}
+
+.portfolio .portfolio-item .portfolio-info .preview-link:hover,
+.portfolio .portfolio-item .portfolio-info .details-link:hover {
+  color: var(--accent-color);
+}
+
+.portfolio .portfolio-item .portfolio-info .details-link {
+  right: 14px;
+  font-size: 28px;
+}
+
+.portfolio .portfolio-item:hover .portfolio-info {
+  opacity: 1;
+  bottom: 0;
 }
 
 /*--------------------------------------------------------------
