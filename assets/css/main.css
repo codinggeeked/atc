@@ -856,14 +856,60 @@ section,
 .why-us .container {
   background: transparent; /* Make the container transparent */
 }
-/* Hover effect for service items */
+
+/* Service Item Styling - Mimicking .services .service-item */
 .why-us .service-item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  background-color: var(--surface-color); /* Use surface color for background */
+  text-align: center; /* Center-align content */
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%); /* Light border */
+  padding: 80px 20px; /* Add padding */
+  transition: border ease-in-out 0.3s; /* Smooth border transition */
+  height: 100%; /* Ensure full height */
 }
 
+.why-us .service-item .icon {
+  margin: 0 auto; /* Center the icon */
+  width: 64px; /* Set icon width */
+  height: 64px; /* Set icon height */
+  background: var(--accent-color); /* Use accent color for icon background */
+  border-radius: 4px; /* Rounded corners for the icon */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  margin-bottom: 20px; /* Space below the icon */
+  transition: 0.3s; /* Smooth transition */
+}
+
+.why-us .service-item .icon i {
+  color: var(--contrast-color); /* Use contrast color for the icon */
+  font-size: 28px; /* Set icon size */
+  transition: ease-in-out 0.3s; /* Smooth transition */
+}
+
+.why-us .service-item h3 {
+  font-weight: 700; /* Bold font for headings */
+  margin: 10px 0 15px 0; /* Spacing around the heading */
+  font-size: 22px; /* Set heading size */
+  transition: 0.3s; /* Smooth transition */
+}
+
+.why-us .service-item p {
+  line-height: 24px; /* Set line height for readability */
+  font-size: 14px; /* Set paragraph size */
+  margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* Hover Effects */
 .why-us .service-item:hover {
-  transform: scale(1.05); /* Zoom in effect */
-  
+  border-color: var(--accent-color); /* Change border color on hover */
+}
+
+.why-us .service-item:hover h3 {
+  color: var(--accent-color); /* Change heading color on hover */
+}
+
+.why-us .service-item:hover .icon {
+  background: color-mix(in srgb, var(--accent-color), transparent 15%); /* Lighten icon background on hover */
 }
 /*--------------------------------------------------------------
 # Featured Services Section
