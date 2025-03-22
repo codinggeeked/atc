@@ -54,16 +54,14 @@
 
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
           <h1 class="sitename">AESTHETIC TECHNOLOGIES</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#featured-services">Services</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -484,71 +482,75 @@
 
 </section><!-- /Pricing Section -->
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
+<section id="contact" class="contact section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <p><span>Get In Touch</span> <span class="description-title">With Us</span></p>
-      </div><!-- End Section Title -->
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <p><span>Get In Touch</span> <span class="description-title">With Us</span></p>
+  </div><!-- End Section Title -->
 
-      <div class="container">
+  <div class="container">
 
-        <div class="row gy-4">
+    <div class="row gy-4">
 
-          <div class="col-lg-6">
-            <div class="info-item d-flex">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h4>Location:</h4>
-                <p>Gaborone, Botswana</p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-6">
-            <div class="info-item d-flex">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h4>Email:</h4>
-                <p>aesthetictechcreatives@gmail.com</p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-6">
-            <div class="info-item d-flex">
-              <i class="bi bi-phone flex-shrink-0"></i>
-              <div>
-                <h4>Call:</h4>
-                <p>+267 77998391 / 76055804</p>
-              </div>
-            </div>
-          </div><!-- End Info Item -->
-
-          <div class="col-lg-6">
-            <div class="info-item d-flex">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h4>Subscribe to Our Newsletter</h4>
-                <p>Stay updated with the latest news and updates from Aesthetic Technologies & Creatives.</p>
-                <form class="newsletter-form">
-                  <input type="email" name="email" placeholder="Enter your email" required>
-                  <button type="submit">Subscribe</button>
-                </form>
-              </div>
-            </div>
-          </div><!-- End Newsletter Item -->
-
+      <!-- Location -->
+      <div class="col-lg-6">
+        <div class="info-item d-flex">
+          <i class="bi bi-geo-alt flex-shrink-0"></i>
+          <div>
+            <h4>Location:</h4>
+            <p>Gaborone, Botswana</p>
+          </div>
         </div>
+      </div><!-- End Info Item -->
 
-      </div>
+      <!-- Email -->
+      <div class="col-lg-6">
+        <div class="info-item d-flex">
+          <i class="bi bi-envelope flex-shrink-0"></i>
+          <div>
+            <h4>Email:</h4>
+            <p>aesthetictechcreatives@gmail.com</p>
+          </div>
+        </div>
+      </div><!-- End Info Item -->
 
-    </section><!-- /Contact Section -->
+      <!-- Call -->
+      <div class="col-lg-6">
+        <div class="info-item d-flex">
+          <i class="bi bi-phone flex-shrink-0"></i>
+          <div>
+            <h4>Call:</h4>
+            <p>+267 77998391 / 76055804</p>
+          </div>
+        </div>
+      </div><!-- End Info Item -->
+
+      <!-- Newsletter -->
+      <div class="col-lg-6">
+        <div class="info-item d-flex">
+          <i class="bi bi-envelope flex-shrink-0"></i>
+          <div>
+            <h4>Subscribe to Our Newsletter</h4>
+            <p>Stay updated with the latest news and updates from Aesthetic Technologies & Creatives.</p>
+            <form id="mailing-list-form" class="newsletter-form">
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+            </form>
+            <p id="response-message"></p>
+          </div>
+        </div>
+      </div><!-- End Newsletter Item -->
+
+    </div>
+
+  </div>
+
+</section><!-- /Contact Section -->
 
   </main>
 
-  <footer id="footer" class="footer">
+  <footer id="footer" class="footer" style="border-top: 1.5px solid maroon;">
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
@@ -580,7 +582,6 @@
             </a>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -632,6 +633,42 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    document.getElementById("mailing-list-form").addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent the default form submission behavior
+      console.log("Form submission prevented"); // Debugging
+  
+      const email = document.getElementById("email").value;
+      const webAppUrl = "https://script.google.com/macros/s/AKfycbwaKfE5UezzZA25eZgWb24yRyzXE9BKk54sjpVKnBPLXNiKyDeVe9Zbv39mpzDzsM1xlA/exec"; // Your Web App URL
+  
+      // Validate email format
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById("response-message").innerText = "Please enter a valid email address.";
+        return; // Stop execution if email is invalid
+      }
+  
+      // Send data to Google Apps Script
+      fetch(webAppUrl, {
+        method: "POST",
+        body: JSON.stringify({ email: email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => response.json()) // Parse the JSON response
+      .then((data) => {
+        if (data.result === "success") {
+          document.getElementById("response-message").innerText = "Thank you for subscribing!";
+        } else {
+          document.getElementById("response-message").innerText = "Something went wrong. Please try again.";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        document.getElementById("response-message").innerText = "Somethinggg went wrong. Please try again.";
+      });
+    });
+  </script>
 </body>
 
 </html>
