@@ -1,1 +1,1 @@
-Copyright @ aesthetictec 2025
+Copyright @ tetlanyo Innovations 2025
