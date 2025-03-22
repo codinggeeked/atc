@@ -526,25 +526,53 @@
         </div>
       </div><!-- End Info Item -->
 
-      <!-- Newsletter -->
-      <div class="col-lg-6">
-        <div class="info-item d-flex">
-          <i class="bi bi-envelope flex-shrink-0"></i>
-          <div>
-            <h4>Subscribe to Our Newsletter</h4>
-            <p>Stay updated with the latest news and updates from Aesthetic Technologies & Creatives.</p>
-            <form id="mailing-list-form" class="newsletter-form">
-              <input type="email" id="email" name="email" placeholder="Enter your email" required>
-              <button type="submit">Subscribe</button>
-            </form>
-            <p id="response-message"></p>
+        <!-- Newsletter Section -->
+        <div class="col-lg-6">
+          <div class="info-item d-flex">
+            <i class="bi bi-envelope flex-shrink-0"></i>
+            <div>
+              <h4>Subscribe to Our Newsletter</h4>
+              <p>Stay updated with the latest news and updates from Aesthetic Technologies & Creatives.</p>
+              
+              <!-- Apply the newsletter-form class here -->
+              <form name="submit-to-google-sheet" id="form" class="newsletter-form">
+                <input type="email" name="email" id="email" placeholder="Email" required>
+                <button type="submit">Subscribe</button>
+              </form>
+              
+              <div id="success-message" style="display:none; color: maroon; font-weight: bold; text-align: center;">
+                Subscribed successfully!
+              </div>
+            </div>
           </div>
         </div>
-      </div><!-- End Newsletter Item -->
+        <!-- /Newsletter Section -->
 
-    </div>
+<!-- JavaScript for form submission and success message -->
+        <script>
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbyESqaakuj15WVB0S1Z1DHs_LkEJFJAKAMRF0ynohrGYrSl0rPpeXSt0dUtv_q_zWzZsw/exec';  // Your web app URL
+          const form = document.forms['submit-to-google-sheet'];
 
-  </div>
+          form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Show success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+
+            // Clear form inputs after 5 seconds
+            setTimeout(() => {
+              successMessage.style.display = 'none';
+              form.reset();  // Clears the form fields
+            }, 5000);  // Display message for 5 seconds
+
+            // Send data to Google Sheets
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+              .then(response => console.log('Success!', response))
+              .catch(error => console.error('Error!', error.message));
+          });
+        </script>
+
 
 </section><!-- /Contact Section -->
 
@@ -633,42 +661,7 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-    document.getElementById("mailing-list-form").addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent the default form submission behavior
-      console.log("Form submission prevented"); // Debugging
-  
-      const email = document.getElementById("email").value;
-      const webAppUrl = "https://script.google.com/macros/s/AKfycbwaKfE5UezzZA25eZgWb24yRyzXE9BKk54sjpVKnBPLXNiKyDeVe9Zbv39mpzDzsM1xlA/exec"; // Your Web App URL
-  
-      // Validate email format
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        document.getElementById("response-message").innerText = "Please enter a valid email address.";
-        return; // Stop execution if email is invalid
-      }
-  
-      // Send data to Google Apps Script
-      fetch(webAppUrl, {
-        method: "POST",
-        body: JSON.stringify({ email: email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => response.json()) // Parse the JSON response
-      .then((data) => {
-        if (data.result === "success") {
-          document.getElementById("response-message").innerText = "Thank you for subscribing!";
-        } else {
-          document.getElementById("response-message").innerText = "Something went wrong. Please try again.";
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        document.getElementById("response-message").innerText = "Somethinggg went wrong. Please try again.";
-      });
-    });
-  </script>
+
 </body>
 
 </html>
